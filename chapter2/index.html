@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- <div id="root"></div> -->
+</body>
+<!-- cdn 방식 react-->
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root");
+
+    const head = React.createElement("h3", {
+        onMouseEnter: () => console.log("MOUSE ENTER"),
+        id: "sexy-span",
+        style: {color: "red"}
+    }, 
+    "I'M A SPAN");
+    const btn = React.createElement("button", {
+        onClick: () => console.log("I'M CLICKED")
+    },
+    "CLICK ME");
+    const container = React.createElement("div", null, [head, btn]);
+    
+    ReactDOM.render(container, root);
+</script>
+</html>
