@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <div id="root"></div>
 </body>
@@ -8,6 +9,24 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     function Btn(props) {
+        // console.log(props);
+        return (
+            <button
+                style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: 0,
+                    borderRadius: 10,
+                    fontSize: props.big ? 24 : 16
+                }}
+            >
+                {props.text}
+            </button>
+        );
+    }
+    /*
+    function SaveBtn() {
         return (
             <button 
                 style={{
@@ -18,45 +37,37 @@
                     borderRadius: 10
                 }}
             >
-                {props.text}
+                SAVE CHANGES
             </button>
         );    
     }
-    // function SaveBtn() {
-    //     return (
-    //         <button 
-    //             style={{
-    //                 backgroundColor: "tomato",
-    //                 color: "white",
-    //                 padding: "10px 20px",
-    //                 border: 0,
-    //                 borderRadius: 10
-    //             }}
-    //         >
-    //             SAVE CHANGES
-    //         </button>
-    //     );    
-    // }
-    // function ConfirmBtn() {
-    //     return (
-    //         <button
-    //             style={{
-    //                 backgroundColor: "tomato",
-    //                 color: "white",
-    //                 padding: "10px 20px",
-    //                 border: 0,
-    //                 borderRadius: 10
-    //             }}
-    //         >
-    //             CONFIRM
-    //         </button>
-    //     );
-    // }
+    function ConfirmBtn() {
+        return (
+            <button
+                style={{
+                    backgroundColor: "tomato",
+                    color: "white",
+                    padding: "10px 20px",
+                    border: 0,
+                    borderRadius: 10
+                }}
+            >
+                CONFIRM
+            </button>
+        );
+    }
+    */
     function App() {
         return (
             <div>
-                <Btn text="SAVE"/>
-                <Btn text="CONTINUE"/>
+                {
+                    /*
+                    <SaveBtn />
+                    <ConfirmBtn />
+                    */
+                }
+                <Btn text="SAVE" big={true} />
+                <Btn text="CONTINUE" big={false} />
             </div>
         );
     }
@@ -64,4 +75,5 @@
     const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
 </script>
+
 </html>

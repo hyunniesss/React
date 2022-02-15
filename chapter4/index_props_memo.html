@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <div id="root"></div>
 </body>
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<!-- <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> -->
+<!-- <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script> -->
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     function Btn({ text, changeValue, fontSize = 12 }) {
+        // console.log(text, " is rendered");
         return (
-            <button 
+            <button
                 style={{
                     backgroundColor: "tomato",
                     color: "white",
@@ -23,20 +27,23 @@
             >
                 {text}
             </button>
-        );    
+        );
     }
-    // const MemorizedBtn = React.memo(Btn);
+    const MemorizedBtn = React.memo(Btn);
     Btn.propTypes = {
         text: PropTypes.string.isRequired,
         fontSize: PropTypes.number
     }
     function App() {
-        const[value, setValue] = React.useState("Save Changes");
-        const changeValue = () => setValue("Revert Changes");
+        const [value, setValue] = React.useState(0);
+        const btnString = ["Save Changes", "Revert Changes"];
+        const changeValue = () => setValue((current) => (current + 1) % 2);
         return (
             <div>
-                <Btn text={value} changeValue={changeValue} fontSize={18}/>
-                <Btn text={"Continue"}/>
+                <Btn text={btnString[value]} changeValue={changeValue} fontSize={18} />
+                <Btn text={"Continue"} />
+                <MemorizedBtn text={btnString[value]} changeValue={changeValue} />
+                <MemorizedBtn text="ABC" />
             </div>
         );
     }
@@ -44,4 +51,5 @@
     const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
 </script>
+
 </html>
